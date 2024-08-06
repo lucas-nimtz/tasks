@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import {StyleSheet, View, Text, ImageBackground } from "react-native"
+import {StyleSheet, View, Text, ImageBackground, FlatList } from "react-native"
 
 import moment from "moment"
 import 'moment/locale/pt-br'
@@ -9,6 +9,28 @@ import today_Image from "../../assets/imgs/today.jpg"
 import Task from "../components/Task"
 
 export default class TaskList extends Component{
+
+    state = {
+        tasks : [{
+            id: Math.random,
+            description: "Comer galinhada",
+            estimate_at: new Date(),
+            done_at: new Date()
+        },
+        {
+            id: Math.random,
+            description: "Beber água",
+            estimate_at: new Date(),
+            done_at: new Date()
+        },
+        {
+            id: Math.random,
+            description: "Jogar videogames",
+            estimate_at: new Date(),
+            done_at: new Date()
+        }]
+    }
+
     render(){
         const today = moment().locale('pt-br').format('ddd, D [de] MMMM')
         return(
@@ -20,21 +42,26 @@ export default class TaskList extends Component{
                     </View>
                 </ImageBackground>
                 <View style={styles.taskList}>
-                    <Task
+                    <FlatList
+                        data = {this.state.tasks}
+                    />
+                    
+                    {/*<Task
                         description="Estudar para prova de história"
                         estimate_at={new Date()}
                         done_at={new Date()}
                     />
                     <Task
-                        description="Cagar na prova de história"
+                        description="Jogar videogame"
                         estimate_at={new Date()}
                         done_at={null}
                     />
                     <Task
-                        description="Comer galinhada no recreio"
+                        description="Comer galinhada"
                         estimate_at={new Date()}
                         done_at={null}
-                    />
+                    />*/}
+
                 </View>
             </View>
         )
