@@ -44,6 +44,7 @@ export default class TaskList extends Component{
                 <View style={styles.taskList}>
                     <FlatList
                         data = {this.state.tasks}
+                        renderItem={({item}) => <Task{...item}/>}
                     />
                     
                     {/*<Task
